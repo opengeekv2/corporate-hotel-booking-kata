@@ -1,4 +1,4 @@
-package us.plp.corporatehotelbooking
+package us.plp.corporatehotelbooking.hotel.unit
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest

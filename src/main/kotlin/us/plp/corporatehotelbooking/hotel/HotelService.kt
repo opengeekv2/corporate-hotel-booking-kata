@@ -1,4 +1,4 @@
-package us.plp.corporatehotelbooking
+package us.plp.corporatehotelbooking.hotel
 
 import org.springframework.stereotype.Service
 
@@ -12,7 +12,7 @@ class HotelService {
         TODO()
     }
 
-    fun findHotelBy(id: Int?): HotelDTO {
-        return HotelDTO()
+    fun findHotelBy(id: Int?): HotelValue {
+        return HotelValue()
     }
 }

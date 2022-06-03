@@ -1,11 +1,12 @@
-package us.plp.corporatehotelbooking
+package us.plp.corporatehotelbooking.hotel.acceptance
 
-import io.cucumber.java.PendingException
 import io.cucumber.java.en.Given
 import io.cucumber.java.en.Then
 import io.cucumber.java.en.When
 import org.assertj.core.api.Assertions.assertThat
 import org.springframework.beans.factory.annotation.Autowired
+import us.plp.corporatehotelbooking.hotel.HotelService
+import us.plp.corporatehotelbooking.hotel.HotelValue
 
 class HotelManagementStepDefinition(
     @Autowired val hotelService: HotelService
@@ -27,7 +28,7 @@ class HotelManagementStepDefinition(
     fun an_hotel_manager_can_get_hotel_and_see_a_single_room(id: Int?) {
         // Write code here that turns the phrase above into concrete actions
         val result = hotelService.findHotelBy(id)
-        assertThat(result).isInstanceOf(HotelDTO::class.java)
+        assertThat(result).isInstanceOf(HotelValue::class.java)
     }
 
 }

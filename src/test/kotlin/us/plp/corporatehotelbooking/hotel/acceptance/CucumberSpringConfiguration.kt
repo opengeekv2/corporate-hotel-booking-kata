@@ -1,4 +1,4 @@
-package us.plp.corporatehotelbooking;
+package us.plp.corporatehotelbooking.hotel.acceptance;
 
 import org.springframework.boot.test.context.SpringBootContextLoader;
 import org.springframework.boot.test.context.SpringBootTest;

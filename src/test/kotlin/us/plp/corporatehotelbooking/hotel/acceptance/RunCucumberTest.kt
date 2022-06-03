@@ -1,4 +1,4 @@
-package us.plp.corporatehotelbooking
+package us.plp.corporatehotelbooking.hotel.acceptance
 
 import org.junit.platform.suite.api.ConfigurationParameter
 import org.junit.platform.suite.api.IncludeEngines
