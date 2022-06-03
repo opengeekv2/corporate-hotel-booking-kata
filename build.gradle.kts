@@ -32,6 +32,7 @@ dependencies {
     testImplementation("org.junit.platform:junit-platform-suite-api:1.8.2")
     testImplementation("io.cucumber:cucumber-junit-platform-engine:7.3.3")
     testImplementation("io.cucumber:cucumber-spring:7.3.3")
+    testImplementation("io.mockk:mockk:1.12.4")
 
 }
 

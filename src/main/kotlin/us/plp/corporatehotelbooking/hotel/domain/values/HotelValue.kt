@@ -1,4 +1,4 @@
-package us.plp.corporatehotelbooking.hotel
+package us.plp.corporatehotelbooking.hotel.domain.values
 
 data class HotelValue(
     val id: Int? = null,
