@@ -49,4 +49,23 @@ class HotelServiceTest {
         }
     }
 
+    @Test
+    fun `should create a new room with id 1 in hotel 1 with room type "single"`() {
+        val hotelService = HotelService(hotelRepository)
+
+        val hotel = Hotel(1, "first hotel")
+
+        val hotelSlot = slot<Hotel>()
+
+        every { hotelRepository.findById(hotel.id) } returns hotel
+        every { hotelRepository.save(capture(hotelSlot)) } returns Unit
+
+        hotelService.setRoom(hotel.id, 1, "single")
+
+        assertThat(hotelSlot.captured.id).isEqualTo(hotel.id)
+        assertThat(hotelSlot.captured.name).isEqualTo(hotel.name)
+        assertThat(hotelSlot.captured.rooms[1]!!.number).isEqualTo(1)
+        assertThat(hotelSlot.captured.rooms[1]!!.roomType).isEqualTo("single")
+    }
+
 }
