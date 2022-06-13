@@ -1,6 +1,7 @@
 Feature: Hotel manager can manage hotels and rooms
 
   Scenario:
+    Given an empty system
     When they set an hotel with id 1 and name "first hotel"
     And add to hotel 1 the room number 1 with type "single room"
     And they set an hotel with id 2 and name "second hotel"

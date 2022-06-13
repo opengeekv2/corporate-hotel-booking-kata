@@ -6,6 +6,7 @@ import us.plp.corporatehotelbooking.hotel.domain.entities.Hotel
 import us.plp.corporatehotelbooking.hotel.domain.entities.Room
 import us.plp.corporatehotelbooking.hotel.domain.values.HotelValue
 import us.plp.corporatehotelbooking.hotel.domain.exceptions.HotelAlreadyExists
+import us.plp.corporatehotelbooking.hotel.domain.exceptions.HotelDoesNotExist
 import us.plp.corporatehotelbooking.hotel.domain.ports.HotelRepository
 
 
@@ -18,7 +19,7 @@ private fun hotelValueFactory(hotel: Hotel): HotelValue {
 
 @Service
 class HotelService(
-        @Autowired val hotelRepository: HotelRepository
+        @Autowired(required=false) val hotelRepository: HotelRepository
 ) {
 
     private val hotels = mutableMapOf<Int, Hotel>()
@@ -30,8 +31,8 @@ class HotelService(
     }
 
     fun setRoom(hotelId: Int, number: Int, roomType: String) {
-        val hotel = hotelRepository.findById(hotelId)
-        hotel!!.rooms[number] = Room(1, "single")
+        val hotel = hotelRepository.findById(hotelId) ?: throw HotelDoesNotExist()
+        hotel.rooms[number] = Room(1, "single")
         hotelRepository.save(hotel)
     }
 

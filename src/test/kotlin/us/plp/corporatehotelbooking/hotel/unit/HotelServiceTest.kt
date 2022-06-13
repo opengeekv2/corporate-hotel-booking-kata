@@ -7,10 +7,12 @@ import io.mockk.verify
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import us.plp.corporatehotelbooking.hotel.domain.entities.Hotel
 import us.plp.corporatehotelbooking.hotel.domain.exceptions.HotelAlreadyExists
+import us.plp.corporatehotelbooking.hotel.domain.exceptions.HotelDoesNotExist
 import us.plp.corporatehotelbooking.hotel.domain.ports.HotelRepository
 import us.plp.corporatehotelbooking.hotel.domain.services.HotelService
 
@@ -66,6 +68,21 @@ class HotelServiceTest {
         assertThat(hotelSlot.captured.name).isEqualTo(hotel.name)
         assertThat(hotelSlot.captured.rooms[1]!!.number).isEqualTo(1)
         assertThat(hotelSlot.captured.rooms[1]!!.roomType).isEqualTo("single")
+    }
+
+    @Test
+    fun `should throw an exception if the hotel does not exist`() {
+        val hotelService = HotelService(hotelRepository)
+
+        val hotel = Hotel(1, "first hotel")
+
+        every { hotelRepository.findById(hotel.id) } returns null
+
+        assertThatExceptionOfType(HotelDoesNotExist::class.java).isThrownBy {
+            hotelService.setRoom(hotel.id, 1, "single")
+        }
+
+        verify(exactly = 0) { hotelRepository.save(any()) }
     }
 
 }

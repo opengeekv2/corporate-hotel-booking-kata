@@ -8,8 +8,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
 import us.plp.corporatehotelbooking.SpringTestConfig
+import us.plp.corporatehotelbooking.hotel.domain.ports.HotelRepository
 
 
 @CucumberContextConfiguration
-@ContextConfiguration(classes = [SpringTestConfig::class])
+@SpringBootTest
 class CucumberSpringConfiguration

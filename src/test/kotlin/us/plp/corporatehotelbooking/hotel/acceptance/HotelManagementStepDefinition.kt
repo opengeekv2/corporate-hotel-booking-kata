@@ -1,21 +1,29 @@
 package us.plp.corporatehotelbooking.hotel.acceptance
 
+import com.ninjasquad.springmockk.MockkBean
+import io.cucumber.core.backend.ObjectFactory
 import io.cucumber.java.en.Given
 import io.cucumber.java.en.Then
 import io.cucumber.java.en.When
+import io.cucumber.spring.CucumberTestContext
+import io.cucumber.spring.SpringFactory
+import io.mockk.every
+import io.mockk.mockk
 import org.assertj.core.api.Assertions.assertThat
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Scope
+import us.plp.corporatehotelbooking.hotel.domain.ports.HotelRepository
 import us.plp.corporatehotelbooking.hotel.domain.services.HotelService
 import us.plp.corporatehotelbooking.hotel.domain.values.HotelValue
 
+
 class HotelManagementStepDefinition(
     @Autowired val hotelService: HotelService
-) {
+    ) {
 
     @Given("an empty system")
-    fun an_empty_system() {
-
-    }
+    fun an_empty_system() = Unit
 
     @When("an hotel manager sets an hotel with id {int} and a single room")
     fun an_hotel_manager_sets_an_hotel_with_id_and_a_single_room(id: Int) {
@@ -38,7 +46,7 @@ class HotelManagementStepDefinition(
     @When("they set an hotel with id {int} and name {string}")
     fun they_set_an_hotel_with_id_and_name(id: Int, name: String) {
         // Write code here that turns the phrase above into concrete actions
-        hotelService.addHotel(id, "test hotel")
+        hotelService.addHotel(id, name)
     }
 
     @When("add to hotel {int} the room number {int} with type {string}")

@@ -33,6 +33,7 @@ dependencies {
     testImplementation("io.cucumber:cucumber-junit-platform-engine:7.3.3")
     testImplementation("io.cucumber:cucumber-spring:7.3.3")
     testImplementation("io.mockk:mockk:1.12.4")
+    testImplementation("com.ninja-squad:springmockk:3.1.1")
 
 }
 
