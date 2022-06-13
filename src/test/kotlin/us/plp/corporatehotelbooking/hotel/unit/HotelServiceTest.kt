@@ -15,6 +15,7 @@ import us.plp.corporatehotelbooking.hotel.domain.exceptions.HotelAlreadyExists
 import us.plp.corporatehotelbooking.hotel.domain.exceptions.HotelDoesNotExist
 import us.plp.corporatehotelbooking.hotel.domain.ports.HotelRepository
 import us.plp.corporatehotelbooking.hotel.domain.services.HotelService
+import us.plp.corporatehotelbooking.hotel.domain.values.RoomValue
 
 
 class HotelServiceTest {
@@ -83,6 +84,19 @@ class HotelServiceTest {
         }
 
         verify(exactly = 0) { hotelRepository.save(any()) }
+    }
+
+    @Test
+    fun `should return all the information about the rooms of the hotel with specified id - no rooms`() {
+        val hotelService = HotelService(hotelRepository)
+
+        val hotel = Hotel(1, "first hotel")
+
+        every { hotelRepository.findById(hotel.id) } returns hotel
+
+        val result = hotelService.findHotelBy(1)
+        assertThat(result.numberOfRooms()).isEqualTo(0)
+        assertThat(result.rooms).isEqualTo(listOf<RoomValue>())
     }
 
 }

@@ -24,11 +24,11 @@ class SpringTestConfig {
             }
 
             override fun add(hotel: Hotel) {
-                TODO("Not yet implemented")
+                hotels[hotel.id] = hotel
             }
 
             override fun save(hotel: Hotel) {
-                TODO("Not yet implemented")
+                hotels[hotel.id] = hotel
             }
 
         }
