@@ -6,6 +6,6 @@ data class HotelValue(
     val rooms: List<RoomValue> = listOf()
 ) {
     fun numberOfRooms(): Int {
-        return 0
+        return rooms.size
     }
 }

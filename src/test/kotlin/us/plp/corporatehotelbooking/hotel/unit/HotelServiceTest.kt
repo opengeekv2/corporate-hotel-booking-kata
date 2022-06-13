@@ -11,6 +11,7 @@ import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import us.plp.corporatehotelbooking.hotel.domain.entities.Hotel
+import us.plp.corporatehotelbooking.hotel.domain.entities.Room
 import us.plp.corporatehotelbooking.hotel.domain.exceptions.HotelAlreadyExists
 import us.plp.corporatehotelbooking.hotel.domain.exceptions.HotelDoesNotExist
 import us.plp.corporatehotelbooking.hotel.domain.ports.HotelRepository
@@ -99,4 +100,17 @@ class HotelServiceTest {
         assertThat(result.rooms).isEqualTo(listOf<RoomValue>())
     }
 
+    @Test
+    fun `should return all the information about the rooms of the hotel with specified id - a room`() {
+        val hotelService = HotelService(hotelRepository)
+
+        val hotel = Hotel(1, "first hotel")
+        hotel.rooms[1] = Room(1, "single")
+
+        every { hotelRepository.findById(hotel.id) } returns hotel
+
+        val result = hotelService.findHotelBy(1)
+        assertThat(result.numberOfRooms()).isEqualTo(1)
+        assertThat(result.rooms).isEqualTo(listOf(RoomValue(1, "single")))
+    }
 }

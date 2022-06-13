@@ -8,12 +8,14 @@ import us.plp.corporatehotelbooking.hotel.domain.values.HotelValue
 import us.plp.corporatehotelbooking.hotel.domain.exceptions.HotelAlreadyExists
 import us.plp.corporatehotelbooking.hotel.domain.exceptions.HotelDoesNotExist
 import us.plp.corporatehotelbooking.hotel.domain.ports.HotelRepository
+import us.plp.corporatehotelbooking.hotel.domain.values.RoomValue
 
 
 private fun hotelValueFactory(hotel: Hotel): HotelValue {
     return HotelValue(
             hotel.id,
-            hotel.name
+            hotel.name,
+            hotel.rooms.map { RoomValue(it.value.number, it.value.roomType) }
     )
 }
 
