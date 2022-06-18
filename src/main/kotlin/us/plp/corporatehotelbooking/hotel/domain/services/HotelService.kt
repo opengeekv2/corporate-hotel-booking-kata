@@ -34,7 +34,7 @@ class HotelService(
 
     fun setRoom(hotelId: Int, number: Int, roomType: String) {
         val hotel = hotelRepository.findById(hotelId) ?: throw HotelDoesNotExist()
-        hotel.rooms[number] = Room(1, "single")
+        hotel.rooms[number] = Room(number, roomType)
         hotelRepository.save(hotel)
     }
 

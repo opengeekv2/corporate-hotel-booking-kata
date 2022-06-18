@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Scope
 import us.plp.corporatehotelbooking.hotel.domain.ports.HotelRepository
 import us.plp.corporatehotelbooking.hotel.domain.services.HotelService
 import us.plp.corporatehotelbooking.hotel.domain.values.HotelValue
+import us.plp.corporatehotelbooking.hotel.domain.values.RoomValue
 
 
 class HotelManagementStepDefinition(
@@ -66,7 +67,7 @@ class HotelManagementStepDefinition(
     fun hotel_number_has_a_room_of_the_type(id: Int, number: Int, roomType: String) {
         // Write code here that turns the phrase above into concrete actions
         val result = hotelService.findHotelBy(id)
-        assertThat(result.rooms!![number]).isEqualTo(roomType)
+        assertThat(result.rooms).containsAnyOf(RoomValue(number, roomType))
     }
 
 }

@@ -73,6 +73,44 @@ class HotelServiceTest {
     }
 
     @Test
+    fun `should create a new room with id 1 in hotel 1 with room type "suite"`() {
+        val hotelService = HotelService(hotelRepository)
+
+        val hotel = Hotel(1, "first hotel")
+
+        val hotelSlot = slot<Hotel>()
+
+        every { hotelRepository.findById(hotel.id) } returns hotel
+        every { hotelRepository.save(capture(hotelSlot)) } returns Unit
+
+        hotelService.setRoom(hotel.id, 1, "suite")
+
+        assertThat(hotelSlot.captured.id).isEqualTo(hotel.id)
+        assertThat(hotelSlot.captured.name).isEqualTo(hotel.name)
+        assertThat(hotelSlot.captured.rooms[1]!!.number).isEqualTo(1)
+        assertThat(hotelSlot.captured.rooms[1]!!.roomType).isEqualTo("suite")
+    }
+
+    @Test
+    fun `should create a new room with number 2 in hotel 2 with room type "double room"`() {
+        val hotelService = HotelService(hotelRepository)
+
+        val hotel = Hotel(2, "second hotel")
+
+        val hotelSlot = slot<Hotel>()
+
+        every { hotelRepository.findById(hotel.id) } returns hotel
+        every { hotelRepository.save(capture(hotelSlot)) } returns Unit
+
+        hotelService.setRoom(hotel.id, 2, "double room")
+
+        assertThat(hotelSlot.captured.id).isEqualTo(hotel.id)
+        assertThat(hotelSlot.captured.name).isEqualTo(hotel.name)
+        assertThat(hotelSlot.captured.rooms[2]!!.number).isEqualTo(2)
+        assertThat(hotelSlot.captured.rooms[2]!!.roomType).isEqualTo("double room")
+    }
+
+    @Test
     fun `should throw an exception if the hotel does not exist`() {
         val hotelService = HotelService(hotelRepository)
 
@@ -112,5 +150,23 @@ class HotelServiceTest {
         val result = hotelService.findHotelBy(1)
         assertThat(result.numberOfRooms()).isEqualTo(1)
         assertThat(result.rooms).isEqualTo(listOf(RoomValue(1, "single")))
+    }
+
+    @Test
+    fun `should return all the information about the rooms of the hotel with specified id - many rooms`() {
+        val hotelService = HotelService(hotelRepository)
+
+        val hotel = Hotel(1, "first hotel")
+        hotel.rooms[1] = Room(1, "single")
+        hotel.rooms[2] = Room(2, "double")
+
+        every { hotelRepository.findById(hotel.id) } returns hotel
+
+        val result = hotelService.findHotelBy(1)
+        assertThat(result.numberOfRooms()).isEqualTo(2)
+        assertThat(result.rooms).isEqualTo(listOf(
+            RoomValue(1, "single"),
+            RoomValue(2, "double")
+        ))
     }
 }
