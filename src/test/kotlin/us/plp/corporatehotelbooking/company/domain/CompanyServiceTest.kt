@@ -49,4 +49,16 @@ class CompanyServiceTest {
 
         verify(exactly = 0) { employeeRepository.add(any()) }
     }
+
+    @ParameterizedTest
+    @CsvSource("1", "2")
+    fun `employee should be deleted`(companyId: Int) {
+        val companyService = CompanyService(employeeRepository)
+
+        every { employeeRepository.delete(companyId) } returns Unit
+
+        companyService.removeEmployee(companyId)
+
+        verify { employeeRepository.delete(companyId) }
+    }
 }

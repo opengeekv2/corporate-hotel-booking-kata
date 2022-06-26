@@ -50,6 +50,10 @@ class SpringTestConfig {
                 employees[employee.id] = employee
             }
 
+            override fun delete(employeeId: Int) {
+                employees.remove(employeeId)
+            }
+
         }
     }
 }

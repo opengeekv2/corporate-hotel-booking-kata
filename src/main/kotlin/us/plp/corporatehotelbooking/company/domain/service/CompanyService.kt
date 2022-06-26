@@ -11,4 +11,8 @@ class CompanyService(val employeeRepository: EmployeeRepository) {
         if (employeeRepository.findById(employeeId) != null) throw EmployeeAlreadyExists()
         employeeRepository.add(Employee(employeeId, companyId))
     }
+
+    fun removeEmployee(employeeId: Int) {
+        employeeRepository.delete(employeeId)
+    }
 }
