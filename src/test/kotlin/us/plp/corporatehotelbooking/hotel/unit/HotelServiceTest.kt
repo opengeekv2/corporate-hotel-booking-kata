@@ -21,7 +21,7 @@ import us.plp.corporatehotelbooking.hotel.domain.values.RoomValue
 
 class HotelServiceTest {
 
-    private val hotelRepository = mockk<HotelRepository>()
+    private val hotelRepository = mockk<HotelRepository>(relaxed = true)
 
     @ParameterizedTest
     @CsvSource(
@@ -51,6 +51,8 @@ class HotelServiceTest {
         assertThatExceptionOfType(HotelAlreadyExists::class.java).isThrownBy {
             hotelService.addHotel(2, "second test hotel")
         }
+
+        verify(exactly = 0) { hotelRepository.add(any()) }
     }
 
     @Test

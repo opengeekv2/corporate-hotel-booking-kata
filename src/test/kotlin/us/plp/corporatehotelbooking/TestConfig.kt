@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Scope
+import us.plp.corporatehotelbooking.company.domain.entities.Employee
+import us.plp.corporatehotelbooking.company.domain.ports.EmployeeRepository
 import us.plp.corporatehotelbooking.hotel.domain.entities.Hotel
 import us.plp.corporatehotelbooking.hotel.domain.ports.HotelRepository
 
@@ -29,6 +31,23 @@ class SpringTestConfig {
 
             override fun save(hotel: Hotel) {
                 hotels[hotel.id] = hotel
+            }
+
+        }
+    }
+
+    @Bean
+    fun employeeRepository(): EmployeeRepository {
+        return object: EmployeeRepository {
+
+            private val employees = mutableMapOf<Int, Employee>()
+
+            override fun findById(id: Int): Employee? {
+                return employees[id]
+            }
+
+            override fun add(employee: Employee) {
+                employees[employee.id] = employee
             }
 
         }
