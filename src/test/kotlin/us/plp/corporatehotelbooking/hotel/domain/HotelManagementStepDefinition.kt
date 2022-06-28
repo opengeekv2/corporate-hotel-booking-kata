@@ -31,8 +31,8 @@ class HotelManagementStepDefinition(
         assertThat(result).isInstanceOf(HotelValue::class.java)
         assertThat(result.id).isEqualTo(1)
         assertThat(result.name).isEqualTo("test hotel")
-        assertThat(result.rooms!![0].number).isEqualTo(1)
-        assertThat(result.rooms!![0].roomType).isEqualTo(1)
+        assertThat(result.rooms[0].number).isEqualTo(1)
+        assertThat(result.rooms[0].roomType).isEqualTo(1)
     }
 
     @When("they set an hotel with id {int} and name {string}")
