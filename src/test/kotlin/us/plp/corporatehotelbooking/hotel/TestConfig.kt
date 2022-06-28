@@ -1,4 +1,4 @@
-package us.plp.corporatehotelbooking
+package us.plp.corporatehotelbooking.hotel
 
 import com.ninjasquad.springmockk.MockkBean
 import io.cucumber.spring.CucumberTestContext.SCOPE_CUCUMBER_GLUE

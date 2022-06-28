@@ -1,19 +1,10 @@
-package us.plp.corporatehotelbooking.hotel.acceptance
+package us.plp.corporatehotelbooking.hotel.domain
 
-import com.ninjasquad.springmockk.MockkBean
-import io.cucumber.core.backend.ObjectFactory
 import io.cucumber.java.en.Given
 import io.cucumber.java.en.Then
 import io.cucumber.java.en.When
-import io.cucumber.spring.CucumberTestContext
-import io.cucumber.spring.SpringFactory
-import io.mockk.every
-import io.mockk.mockk
 import org.assertj.core.api.Assertions.assertThat
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.context.annotation.Bean
-import org.springframework.context.annotation.Scope
-import us.plp.corporatehotelbooking.hotel.domain.ports.HotelRepository
 import us.plp.corporatehotelbooking.hotel.domain.services.HotelService
 import us.plp.corporatehotelbooking.hotel.domain.values.HotelValue
 import us.plp.corporatehotelbooking.hotel.domain.values.RoomValue

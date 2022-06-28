@@ -1,4 +1,4 @@
-package us.plp.corporatehotelbooking.hotel.unit
+package us.plp.corporatehotelbooking.hotel.domain
 
 import io.mockk.every
 import io.mockk.mockk
@@ -7,7 +7,6 @@ import io.mockk.verify
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import us.plp.corporatehotelbooking.hotel.domain.entities.Hotel
