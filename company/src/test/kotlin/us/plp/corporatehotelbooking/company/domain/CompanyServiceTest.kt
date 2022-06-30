@@ -13,7 +13,6 @@ import us.plp.corporatehotelbooking.company.domain.entities.Employee
 import us.plp.corporatehotelbooking.company.domain.ports.EmployeeRepository
 import us.plp.corporatehotelbooking.company.domain.service.CompanyService
 import us.plp.corporatehotelbooking.company.domain.exceptions.EmployeeAlreadyExists
-import us.plp.corporatehotelbooking.hotel.domain.exceptions.HotelAlreadyExists
 
 
 class CompanyServiceTest {

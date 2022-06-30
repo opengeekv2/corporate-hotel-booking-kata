@@ -8,6 +8,6 @@ import io.cucumber.junit.platform.engine.Constants.GLUE_PROPERTY_NAME
 
 
 @Suite
-@SelectClasspathResource("hotel/features")
+@SelectClasspathResource("features")
 @ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "us.plp.corporatehotelbooking.hotel")
 class RunCucumberTest
