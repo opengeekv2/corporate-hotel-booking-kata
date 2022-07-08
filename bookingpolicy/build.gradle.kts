@@ -15,18 +15,10 @@ repositories {
     mavenCentral()
 }
 
-val cucumberRuntime by configurations.creating {
-    extendsFrom(configurations["testImplementation"])
-}
-
 dependencies {
-    implementation(project(":hotel"))
-    implementation(project(":company"))
-    implementation(project(":bookingpolicy"))
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    testImplementation("org.junit.platform:junit-platform-engine:1.8.2")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.junit.jupiter:junit-jupiter")
     testImplementation("io.cucumber:cucumber-java:7.3.3")
@@ -37,7 +29,6 @@ dependencies {
     testImplementation("io.cucumber:cucumber-spring:7.3.3")
     testImplementation("io.mockk:mockk:1.12.4")
     testImplementation("com.ninja-squad:springmockk:3.1.1")
-
 }
 
 tasks.withType<KotlinCompile> {
@@ -49,16 +40,4 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
-    systemProperty("cucumber.junit-platform.naming-strategy", "long")
-}
-
-task("cucumber") {
-    dependsOn(tasks.named("assemble"), tasks.named("testClasses"))
-    doLast {
-        javaexec {
-            mainClass.set("io.cucumber.core.cli.Main")
-            classpath = cucumberRuntime + sourceSets.main.get().output + sourceSets.test.get().output
-            args = listOf("--plugin", "pretty", "--glue", "gradle.cucumber", "src/test/resources")
-        }
-    }
 }

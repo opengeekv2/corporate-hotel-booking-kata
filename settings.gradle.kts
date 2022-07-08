@@ -1,5 +1,6 @@
 rootProject.name = "corporatehotelbooking"
 include(
     "hotel",
-    "company"
+    "company",
+    "bookingpolicy"
 )
