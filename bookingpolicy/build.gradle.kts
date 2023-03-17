@@ -16,9 +16,11 @@ repositories {
 }
 
 dependencies {
+    implementation(project(":hotel"))
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    testImplementation(testFixtures(project(":hotel")))
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.junit.jupiter:junit-jupiter")
     testImplementation("io.cucumber:cucumber-java:7.3.3")
