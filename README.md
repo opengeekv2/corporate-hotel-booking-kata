@@ -3,6 +3,11 @@ CIP
 Explore the ways kotlin provides to have an application that can be compiled and testes in different parts and also work
 as a whole. Also keep going with the kata to find the problems we may have to overcome by working that way.
 
+This iniciative is valuable to Scentmate so the team can get experience in working in a modular setting.
+
+A modular setting will improve our productivity by reducing testing time (as only changed modules might get tested) and
+also paves the way to the extraction of the model as a service.
+
 To explore it, we're doing a kata known for having different domains that have to cooperate to solve the kata known as
 the Hotels Booking kata.
 
